@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  socket:
+    build: .
+    command: npm start
+    container_name: chatsocket
+    restart: unless-stopped
+    volumes:
+      - .:/chatsocket
+      - /chatsocket/node_modules
+    ports:
+      - "2086:9000"
+    networks:
+      - postgres
+
+networks:
+  postgres:
+    driver: bridge
